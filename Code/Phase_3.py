@@ -6,8 +6,8 @@ import network
 import urequests
 
 # WiFi credentials
-ssid = 'Snevin D\'souza'
-password = 'snevinsneha1925'
+ssid = 'WiFi-Name'
+password = 'Wifi-Password'
 
 # Connect to WiFi network
 wlan = network.WLAN(network.STA_IF)

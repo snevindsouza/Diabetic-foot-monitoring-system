@@ -6,8 +6,8 @@ import network
 import urequests
 
 # WiFi credentials
-ssid = 'S'
-password = '12345678'
+ssid = 'Snevin D\'souza'
+password = 'snevinsneha1925'
 
 # Connect to WiFi network
 wlan = network.WLAN(network.STA_IF)
@@ -120,12 +120,26 @@ while True:
             mux_en.off()
             
     # Process incoming HTTP requests
-
+    cl, addr = s.accept()
+    print('client connected from', addr)
+    request = cl.recv(1024)
+    # Generate response
+    
+    response = 'HTTP/1.1 200 OK\nContent-Type: text/html\n\n'
+    response += '<html>\n<head>\n<title>Diabetic Foot Monitoring Device</title>\n</head>\n<body>\n'
+    response += '<h1>Diabetic Foot Monitoring Device</h1>\n'
+    response += generate_heatmap(average_voltage_matrix)
+    response += '</body>\n</html>\n'
+        
+    # Send response
+    cl.send(response)
+    cl.close()
     print("average_voltage_matrix:")
     for row in average_voltage_matrix:
         print(row)  
     utime.sleep(2)
     #response = urequests.get('http://localhost:80/')
     
+
 
 
